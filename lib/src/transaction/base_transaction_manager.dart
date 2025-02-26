@@ -3,18 +3,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_paystack/src/api/model/transaction_api_response.dart';
-import 'package:flutter_paystack/src/common/exceptions.dart';
-import 'package:flutter_paystack/src/common/paystack.dart';
 import 'package:flutter_paystack/src/common/utils.dart';
-import 'package:flutter_paystack/src/models/card.dart';
-import 'package:flutter_paystack/src/models/charge.dart';
-import 'package:flutter_paystack/src/models/checkout_response.dart';
 import 'package:flutter_paystack/src/models/transaction.dart';
 import 'package:flutter_paystack/src/widgets/birthday_widget.dart';
 import 'package:flutter_paystack/src/widgets/card_widget.dart';
 import 'package:flutter_paystack/src/widgets/otp_widget.dart';
 import 'package:flutter_paystack/src/widgets/pin_widget.dart';
+
 
 abstract class BaseTransactionManager {
   bool processing = false;
@@ -115,7 +112,7 @@ abstract class BaseTransactionManager {
                     ? response.message
                     : response.displayText));
 
-    if (otp != null && otp.isNotEmpty) {
+    if (otp!.isNotEmpty) {
       return handleOtpInput(otp, response);
     } else {
       return notifyProcessingError(
@@ -130,13 +127,11 @@ abstract class BaseTransactionManager {
     String? result = await Utils.methodChannel
         .invokeMethod<String>('getAuthorization', {"authUrl": url});
 
-    if (result != null) {
-      try {
-        Map<String, dynamic> responseMap = json.decode(result);
-        apiResponse = TransactionApiResponse.fromMap(responseMap);
-      } catch (e) {}
-    }
-    return _initApiResponse(apiResponse);
+    try {
+      Map<String, dynamic> responseMap = json.decode(result!);
+      apiResponse = TransactionApiResponse.fromMap(responseMap);
+    } catch (e) {}
+      return _initApiResponse(apiResponse);
   }
 
   Future<CheckoutResponse> getPinFrmUI() async {
@@ -145,7 +140,7 @@ abstract class BaseTransactionManager {
         context: context,
         builder: (BuildContext context) => new PinWidget());
 
-    if (pin != null && pin.length == 4) {
+    if (pin!.length == 4) {
       return handlePinInput(pin);
     } else {
       return notifyProcessingError(
@@ -166,7 +161,7 @@ abstract class BaseTransactionManager {
           return new BirthdayWidget(message: messageText);
         });
 
-    if (birthday != null && birthday.isNotEmpty) {
+    if (birthday!.isNotEmpty) {
       return handleBirthdayInput(birthday, response);
     } else {
       return notifyProcessingError(
