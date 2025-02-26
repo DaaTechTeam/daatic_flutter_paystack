@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:daatic_flutter_paystack/src/common/paystack.dart';
+
 
 mixin BaseApiService {
   final Map<String, String> headers = {

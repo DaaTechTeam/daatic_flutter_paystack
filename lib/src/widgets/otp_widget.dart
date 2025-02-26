@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/src/widgets/base_widget.dart';
-import 'package:flutter_paystack/src/widgets/common/extensions.dart';
-import 'package:flutter_paystack/src/widgets/custom_dialog.dart';
-import 'package:flutter_paystack/src/widgets/input/otp_field.dart';
+import 'package:daatic_flutter_paystack/src/widgets/base_widget.dart';
+import 'package:daatic_flutter_paystack/src/widgets/common/extensions.dart';
+import 'package:daatic_flutter_paystack/src/widgets/custom_dialog.dart';
+import 'package:daatic_flutter_paystack/src/widgets/input/otp_field.dart';
 
 import 'buttons.dart';
 
@@ -35,7 +35,7 @@ class _OtpWidgetState extends BaseState<OtpWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 new Image.asset('assets/images/otp.png',
-                    width: 30.0, package: 'flutter_paystack'),
+                    width: 30.0, package: 'daatic_flutter_paystack'),
                 heightBox,
                 new Text(
                   widget.message!,

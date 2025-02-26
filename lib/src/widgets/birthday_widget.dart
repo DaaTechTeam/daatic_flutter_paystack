@@ -1,14 +1,14 @@
 import 'dart:io';
 
+import 'package:daatic_flutter_paystack/src/widgets/buttons.dart';
+import 'package:daatic_flutter_paystack/src/widgets/common/extensions.dart';
+import 'package:daatic_flutter_paystack/src/widgets/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_paystack/src/widgets/base_widget.dart';
-import 'package:flutter_paystack/src/widgets/buttons.dart';
-import 'package:flutter_paystack/src/widgets/common/extensions.dart';
-import 'package:flutter_paystack/src/widgets/custom_dialog.dart';
 import 'package:intl/intl.dart';
 
 const double _kPickerSheetHeight = 216.0;
+
 
 class BirthdayWidget extends StatefulWidget {
   final String message;
@@ -16,12 +16,17 @@ class BirthdayWidget extends StatefulWidget {
   BirthdayWidget({required this.message});
 
   @override
-  _BirthdayWidgetState createState() => _BirthdayWidgetState();
+  State<BirthdayWidget> createState() => BirthdayWidgetState();
 }
 
-class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
+class BirthdayWidgetState extends State<BirthdayWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return buildChild(context);
+  }
   var _heightBox = const SizedBox(height: 20.0);
   DateTime? _pickedDate;
+  late String confirmationMessage;
 
   @override
   void initState() {
@@ -29,7 +34,6 @@ class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
     confirmationMessage = 'Do you want to cancel birthday input?';
   }
 
-  @override
   Widget buildChild(BuildContext context) {
     return new CustomAlertDialog(
         content: new SingleChildScrollView(
@@ -179,4 +183,10 @@ class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
     String date = new DateFormat('yyyy-MM-dd').format(_pickedDate!);
     Navigator.of(context).pop(date);
   }
+
+  void onCancelPress() {
+    Navigator.of(context).pop();
+  }
+
+
 }

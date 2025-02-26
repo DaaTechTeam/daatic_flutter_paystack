@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/src/widgets/base_widget.dart';
+import 'package:daatic_flutter_paystack/src/widgets/base_widget.dart';
 
 class CustomAnimatedWidget extends StatelessWidget {
   final CurvedAnimation _animation;

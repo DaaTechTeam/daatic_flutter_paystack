@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/src/common/card_utils.dart';
-import 'package:flutter_paystack/src/common/utils.dart';
-import 'package:flutter_paystack/src/models/card.dart';
-import 'package:flutter_paystack/src/widgets/buttons.dart';
-import 'package:flutter_paystack/src/widgets/input/cvc_field.dart';
-import 'package:flutter_paystack/src/widgets/input/date_field.dart';
-import 'package:flutter_paystack/src/widgets/input/number_field.dart';
+import 'package:daatic_flutter_paystack/src/common/card_utils.dart';
+import 'package:daatic_flutter_paystack/src/common/utils.dart';
+import 'package:daatic_flutter_paystack/src/models/card.dart';
+import 'package:daatic_flutter_paystack/src/widgets/buttons.dart';
+import 'package:daatic_flutter_paystack/src/widgets/input/cvc_field.dart';
+import 'package:daatic_flutter_paystack/src/widgets/input/date_field.dart';
+import 'package:daatic_flutter_paystack/src/widgets/input/number_field.dart';
 
 class CardInput extends StatefulWidget {
   final String buttonText;
@@ -63,7 +63,7 @@ class _CardInputState extends State<CardInput> {
             onSaved: (String? value) =>
                 _card!.number = CardUtils.getCleanedNumber(value),
             suffix: getCardIcon(),
-          ),
+          ) as Widget,
           new SizedBox(
             height: 15.0,
           ),
@@ -80,17 +80,18 @@ class _CardInputState extends State<CardInput> {
                     _card!.expiryMonth = expiryDate[0];
                     _card!.expiryYear = expiryDate[1];
                   },
-                ),
+                ) as Widget,
               ),
               new SizedBox(width: 15.0),
               new Flexible(
-                  child: new CVCField(
-                key: Key("CVVKey"),
-                card: _card,
-                onSaved: (value) {
-                  _card!.cvc = CardUtils.getCleanedNumber(value);
-                },
-              )),
+                child: new CVCField(
+                  key: Key("CVVKey"),
+                  card: _card,
+                  onSaved: (value) {
+                    _card!.cvc = CardUtils.getCleanedNumber(value);
+                  },
+                ),
+              ),
             ],
           ),
           new SizedBox(
@@ -168,7 +169,7 @@ class _CardInputState extends State<CardInput> {
         key: Key("IssuerIcon"),
         height: 15,
         width: 30,
-        package: 'flutter_paystack',
+        package: 'daatic_flutter_paystack',
       );
     } else {
       widget = defaultIcon;

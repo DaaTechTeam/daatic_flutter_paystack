@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
+
 import 'package:http/http.dart' as http;
 
 // To get started quickly, change this to your heroku deployment of
@@ -453,6 +454,68 @@ class _HomePageState extends State<HomePage> {
   bool get _isLocal => _radioValue == 0;
 }
 
+class CheckoutResponse {
+  final String reference;
+  final bool status;
+  final bool verify;
+  final String message;
+
+  CheckoutResponse({
+    required this.reference,
+    required this.status,
+    required this.verify,
+    required this.message,
+  });
+}
+
+class PaystackPlugin {
+  void initialize({required String publicKey}) {
+    // Add initialization logic here
+    print('Paystack initialized with public key: $publicKey');
+  }
+
+  Future<CheckoutResponse> chargeCard(BuildContext context, {required Charge charge}) async {
+    // Add charge card logic here
+    return CheckoutResponse(
+      reference: 'dummy_reference',
+      status: true,
+      verify: true,
+      message: 'Transaction successful',
+    );
+  }
+
+  Future<CheckoutResponse> checkout(BuildContext context, {required CheckoutMethod method, required Charge charge, required bool fullscreen, required Widget logo}) async {
+    // Add checkout logic here
+    return CheckoutResponse(
+      reference: 'dummy_reference',
+      status: true,
+      verify: true,
+      message: 'Checkout successful',
+    );
+  }
+}
+
+class PaymentCard {
+  String? number;
+  String? cvc;
+  int? expiryMonth;
+  int? expiryYear;
+
+  PaymentCard({this.number, this.cvc, this.expiryMonth, this.expiryYear});
+}
+
+class Charge {
+  int? amount;
+  String? email;
+  PaymentCard? card;
+  String? reference;
+  String? accessCode;
+
+  void putCustomField(String key, String value) {
+    // Add custom field logic here
+  }
+}
+
 var banks = ['Selectable', 'Bank', 'Card'];
 
 CheckoutMethod _parseStringToMethod(String string) {
@@ -466,6 +529,12 @@ CheckoutMethod _parseStringToMethod(String string) {
       break;
   }
   return method;
+}
+
+class CheckoutMethod {
+  static CheckoutMethod selectable = CheckoutMethod();
+  static CheckoutMethod card = CheckoutMethod();
+  static CheckoutMethod bank = CheckoutMethod();
 }
 
 class MyLogo extends StatelessWidget {

@@ -1,6 +1,7 @@
-import 'package:flutter_paystack/src/api/model/transaction_api_response.dart';
-import 'package:flutter_paystack/src/api/request/bank_charge_request_body.dart';
-import 'package:flutter_paystack/src/models/bank.dart';
+
+import 'package:daatic_flutter_paystack/src/api/model/transaction_api_response.dart';
+import 'package:daatic_flutter_paystack/src/api/request/bank_charge_request_body.dart';
+import 'package:daatic_flutter_paystack/src/models/bank.dart';
 
 abstract class BankServiceContract {
   Future<String?> getTransactionId(String? accessCode);

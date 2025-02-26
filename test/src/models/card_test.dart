@@ -1,4 +1,5 @@
-import 'package:flutter_paystack/flutter_paystack.dart';
+
+import 'package:daatic_flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../common/case.dart';

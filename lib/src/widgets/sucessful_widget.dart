@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/src/common/utils.dart';
-import 'package:flutter_paystack/src/widgets/animated_widget.dart';
-import 'package:flutter_paystack/src/widgets/common/extensions.dart';
+import 'package:daatic_flutter_paystack/src/common/utils.dart';
+import 'package:daatic_flutter_paystack/src/widgets/animated_widget.dart';
+import 'package:daatic_flutter_paystack/src/widgets/common/extensions.dart';
 
 class SuccessfulWidget extends StatefulWidget {
   final int amount;
@@ -80,7 +80,7 @@ class _SuccessfulWidgetState extends State<SuccessfulWidget>
               'assets/images/successful.png',
               color: sceondaryColor,
               width: 50.0,
-              package: 'flutter_paystack',
+              package: 'daatic_flutter_paystack',
             ),
             sizedBox,
             Text(
